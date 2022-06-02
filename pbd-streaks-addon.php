@@ -14,12 +14,17 @@
  */
 
 // define constants
-define( 'PBD_SA_PATH_CLASS', dirname( __FILE__ ) . '/class' );
+if ( ! defined( 'PBD_SA_PATH_CLASS' ) ) {
+	define( 'PBD_SA_PATH_CLASS', dirname( __FILE__ ) . '/class' );
+}
+define( 'PBD_SA_PATH', dirname( __FILE__ ) );
+define( 'PBD_SA_FOLDER', basename( PBD_SA_PATH ) );
+define( 'PBD_SA_URL', plugins_url() . '/' . PBD_SA_FOLDER );
 
-	if(!class_exists('PBD_Streaks_Addon')):
+if( ! class_exists( 'PBD_Streaks_Addon' ) ):
 
 	// only activate if GamiPress is installed and active
-	if (!function_exists('pbd_sa_activation')) {
+	if ( !function_exists( 'pbd_sa_activation' ) ) {
 		register_activation_hook( __FILE__, 'pbd_sa_activation' );
 		function pbd_sa_activation(){
 
@@ -32,7 +37,7 @@ define( 'PBD_SA_PATH_CLASS', dirname( __FILE__ ) . '/class' );
 
 	add_action( 'admin_init', 'pbd_saplugin_activate' );
 	function pbd_saplugin_activate(){
-		if ( ! class_exists('GamiPress') ) {
+		if ( ! class_exists( 'GamiPress' ) ) {
 			deactivate_plugins( plugin_basename( __FILE__ ) );
 		}
 	}
