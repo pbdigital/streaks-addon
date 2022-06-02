@@ -27,7 +27,7 @@ class PBD_Streaks_Addon {
         extract ( shortcode_atts( array( 
             'id' => '',
             'count' => 1,
-            'color' => ''
+            'color' => '#24D8A2'
         ), $atts ));
 
         $reports = $this->get_pbd_streaks_report( $id );
@@ -41,35 +41,36 @@ class PBD_Streaks_Addon {
                     $weekdays = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
                     foreach( $weekdays as $fullday ){
 						$wd = substr($fullday,0,2);
-						if( $wd == "Su" )
-							$date = date( "d-m-Y", strtotime($fullday." last week") );
-						else
-							$date = date( "d-m-Y", strtotime($fullday." this week") );
-                     
-                            $found_key = array_search($date, array_column($reports, 'date'));
+						if( $wd == "Su" ) {
+                            $date = date( "d-m-Y", strtotime($fullday." last week") );
+                            $day = date( "d", strtotime($fullday." last week") );
+                        } else {
+                            $date = date( "d-m-Y", strtotime($fullday." this week") );
+                            $day = date( "d", strtotime($fullday." last week") );
+                        }
 
-                            if ( (string)$found_key == '0' ) {
-                                ?>
-                                <div class="day weekday <?= $wd ?> day-<?= $date ?> <?= $fullday ?>  data-abbr="<?= $wd ?>" data-date="<?= $date ?>">
-                                    <span><?= $wd ?></span>
-                                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="14" fill="#24D8A2"></circle><path d="M20.817 10l-8 8-3.637-3.636" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                                </div>
-                                <?php
-                            } else {
-                                ?>
-                                <div class="day weekday <?= $wd ?> day-<?= $date ?> <?= $fullday ?>  data-abbr="<?= $wd ?>" data-date="<?= $date ?>">
-                                    <span><?= $wd ?></span>
-                                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="14" cy="14" r="13" stroke="#D9D9D9" stroke-width="2"/>
-                                        <circle cx="14" cy="14" r="7" fill="#E2E3E5"/>
-                                    </svg>
-                                </div>
-                                <?php
-                            }
+                        $found_key = array_search($date, array_column($reports, 'date'));
 
-                        ?>
-                            
-                        <?php
+                        if ( (string)$found_key == '0' ) {
+                            ?>
+                            <div class="day weekday <?= $wd ?> day-<?= $date ?> <?= $fullday ?>  data-abbr="<?= $wd ?>" data-date="<?= $date ?>">
+                                <span><?= $wd ?></span>
+                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="14" fill="<?= $color ?>"></circle><path d="M20.817 10l-8 8-3.637-3.636" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                <span><?= $day ?></span>
+                            </div>
+                            <?php
+                        } else {
+                            ?>
+                            <div class="day weekday <?= $wd ?> day-<?= $date ?> <?= $fullday ?>  data-abbr="<?= $wd ?>" data-date="<?= $date ?>">
+                                <span><?= $wd ?></span>
+                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="14" cy="14" r="13" stroke="#D9D9D9" stroke-width="2"/>
+                                    <circle cx="14" cy="14" r="7" fill="#E2E3E5"/>
+                                </svg>
+                                <span><?= $day ?></span>
+                            </div>
+                            <?php
+                        }
                     }
                 ?>
             </div>

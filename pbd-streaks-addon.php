@@ -17,9 +17,16 @@
 if ( ! defined( 'PBD_SA_PATH_CLASS' ) ) {
 	define( 'PBD_SA_PATH_CLASS', dirname( __FILE__ ) . '/class' );
 }
-define( 'PBD_SA_PATH', dirname( __FILE__ ) );
-define( 'PBD_SA_FOLDER', basename( PBD_SA_PATH ) );
-define( 'PBD_SA_URL', plugins_url() . '/' . PBD_SA_FOLDER );
+if ( ! defined( 'PBD_SA_PATH' ) ) {
+	define( 'PBD_SA_PATH', dirname( __FILE__ ) );
+}
+if ( ! defined( 'PBD_SA_FOLDER' ) ) {
+	define( 'PBD_SA_FOLDER', basename( PBD_SA_PATH ) );
+}
+if ( ! defined( 'PBD_SA_URL' ) ) {
+	define( 'PBD_SA_URL', plugins_url() . '/' . PBD_SA_FOLDER );
+}
+
 
 if( ! class_exists( 'PBD_Streaks_Addon' ) ):
 
