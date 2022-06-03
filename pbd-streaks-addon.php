@@ -34,7 +34,6 @@ if( ! class_exists( 'PBD_Streaks_Addon' ) ):
 	if ( !function_exists( 'pbd_sa_activation' ) ) {
 		register_activation_hook( __FILE__, 'pbd_sa_activation' );
 		function pbd_sa_activation(){
-
 			if ( ! class_exists('GamiPress') ) {
 				deactivate_plugins( plugin_basename( __FILE__ ) );
 				wp_die('Sorry, but this plugin requires the GamiPress to be installed and active.');
