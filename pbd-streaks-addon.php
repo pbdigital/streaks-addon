@@ -5,10 +5,8 @@
  * Description: 
  * Author:     PB Digital
  * Author URI: https://pbdigital.com.au/
- * Version: 1.0.0
+ * Version: 1.0.1
  * Text Domain:   pbd-sa
- * GitHub Plugin URI: pbdigital/streaks-addon
- * GitHub Plugin URI: https://github.com/pbdigital/streaks-addon
  *
  * @link              https://pbdigital.com.au/
  * @since             1.0.0
@@ -56,9 +54,9 @@ if( ! class_exists( 'PBD_Streaks_Addon' ) ):
 	// Include our updater file
 	include_once( PBD_SA_PATH_CLASS.'/pbd-streaks-addon-updater.class.php' );
 	$updater = new PBD_Streaks_Addon_Updater( __FILE__ ); // instantiate our class
-	$updater->set_username( '' ); // set username
-	$updater->set_repository( '' ); // set repo
-	// $updater->authorize( 'abcdefghijk1234567890' ); // Your auth code goes here for private repos
+	$updater->set_username( 'pbdigital' ); // set username
+	$updater->set_repository( 'streaks-addon' ); // set repo
+	$updater->authorize( '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' ); // Your auth code goes here for private repos
 	$updater->initialize(); // initialize the updater
 
 
