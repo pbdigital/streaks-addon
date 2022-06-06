@@ -5,12 +5,8 @@
  * Description: 
  * Author:     PB Digital
  * Author URI: https://pbdigital.com.au/
- * Version: 1.0.0
+ * Version: 1.0.2
  * Text Domain:   pbd-sa
- *
- * @link              https://pbdigital.com.au/
- * @since             1.0.0
- * @package           pbd-sa
  */
 
 // define constants
@@ -56,7 +52,6 @@ if( ! class_exists( 'PBD_Streaks_Addon' ) ):
 	$updater = new PBD_Streaks_Addon_Updater( __FILE__ ); // instantiate our class
 	$updater->set_username( 'pbdigital' ); // set username
 	$updater->set_repository( 'streaks-addon' ); // set repo
-	$updater->authorize( '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' ); // Your auth code goes here for private repos
 	$updater->initialize(); // initialize the updater
 
 
