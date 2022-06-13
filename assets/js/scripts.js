@@ -103,17 +103,20 @@
 
     $(document).on('click', '.view-full-calendar', function(e) {
         e.preventDefault();
+
         
         $('.week-view').slideUp('slow')
         $('.month-view').slideDown('slow')
         
         callCalendar();
+
     })
 
     $(document).on('click', '.hide-full-calendar', function(e) {
         e.preventDefault();
         $('.month-view').slideUp('slow')
         $('.week-view').slideDown('slow')
+
         callCalendar();
     })
 
@@ -129,5 +132,6 @@
         fill: {color: '#00BEDF'}
     });
    
+
 
 })(jQuery);

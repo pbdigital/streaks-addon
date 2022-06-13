@@ -27,6 +27,7 @@ class PBD_Streaks_Addon
         wp_register_style('pbd-sa-fullcalendar-css', PBD_SA_URL . '/assets/fullcalendar/main.css', array(), '1.0');
         wp_register_script('pbd-sa-fullcalendar-js', PBD_SA_URL . '/assets/fullcalendar/main.js', array(), '1.0');
         wp_register_script('pbd-sa-circleprogress-js', PBD_SA_URL . '/assets/js/circle-progress.min.js', array(), '1.0');
+
     }
 
     public function pbd_streaks_shortcode_callback($atts = array())
@@ -75,6 +76,7 @@ class PBD_Streaks_Addon
         wp_enqueue_style('pbd-sa-fullcalendar-css');
         wp_enqueue_script('pbd-sa-fullcalendar-js');
         wp_enqueue_script('pbd-sa-circleprogress-js');
+
         wp_enqueue_script('pbd-sa-scripts', PBD_SA_URL . '/assets/js/scripts.js', array(), '1.0', true);
         wp_localize_script('pbd-sa-scripts', 'events', $events);
 
@@ -109,6 +111,7 @@ class PBD_Streaks_Addon
                         if ((string)$found_key >= '0') :
                             $progress_percent = number_format(($reports[$found_key]['count'] / $count) * 100);
                         ?>
+
                             <div>
                                 <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="18" cy="18" r="18" fill="<?= $color ?>"/>
@@ -126,6 +129,7 @@ class PBD_Streaks_Addon
                                 </svg>
                                 
                             </div>
+
                         <?php endif; ?>
                         <span><?= $day ?></span>
                     </div>
@@ -137,12 +141,14 @@ class PBD_Streaks_Addon
             <a href="#" class="view-full-calendar toggle-control">View Full Calendar</a>
         </div>
 
+
         <div class="page-template-pt-practice month-view" style="display: none;">
             <div id="source-calendar"></div>
             <a href="#" class="hide-full-calendar toggle-control">Hide Calendar</a>
         </div>
         </div>
 <?php
+
 
         $output = ob_get_contents();
         ob_end_clean();
