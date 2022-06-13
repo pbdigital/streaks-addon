@@ -37,8 +37,6 @@ class PBD_Streaks_Addon
         ), $atts));
 
         $reports = $this->get_pbd_streaks_report($id);
-        // echo '<pre>';
-        // print_r($reports);
 
         $events = array();
         $counter = 0;
@@ -60,7 +58,9 @@ class PBD_Streaks_Addon
                     array_push($events, [
                         'start' => $report['date'],
                         'end' => $report['date'],
-                        'js_end' => $report['date']
+                        'js_end' => $report['date'],
+                        'count' => $report['count'],
+                        'target_count' => $count
                     ]);
                     $counter++;
                 }

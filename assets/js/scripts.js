@@ -17,10 +17,9 @@
         },
         height:"auto",
         selectable:false,
-        selectHelper:true,
         initialView: 'dayGridMonth',
         dayMaxEvents: true, // allow "more" link when too many events
-        events: list_events
+        events: list_events,
     });
 
     
