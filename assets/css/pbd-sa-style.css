@@ -1,43 +1,502 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&display=swap");
 .week.user-weekdays {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    margin-top: 29px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-top: 29px;
 }
 
 .week.user-weekdays .day {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    flex-flow: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-flow: column;
+      flex-flow: column;
 }
 
 .week.user-weekdays .day > span {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    text-align: center;
-    color: #2c2c2c;
-    margin-bottom: 8px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  color: #2c2c2c;
+  margin-bottom: 8px;
 }
 
-.week.user-weekdays .day > svg {
-    margin: 8px 3px 10px;
+.week.user-weekdays .day > div {
+  position: relative;
+  margin: 8px 0 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (max-width: 601px) {
+  .week.user-weekdays .day > div svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.week.user-weekdays .day > div canvas {
+  position: absolute;
+  inset: 0;
+}
+
+@media (max-width: 601px) {
+  .week.user-weekdays .day > div canvas {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.goal {
+  font-family: "Montserrat";
+  text-align: center;
+}
+
+.goal-streak {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.goal-streak svg {
+  margin-right: 8px;
+}
+
+.goal-streak span {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  color: #ffffff;
+}
+
+.goal-body {
+  max-width: 380px !important;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.goal-body > div > a {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #ff8f1c;
+  text-decoration: none;
+}
+
+.goal-body.week-view #source-calendar {
+  display: none;
+}
+
+.goal-body.week-view .week {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.goal-body p {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #6f7a88;
+  margin: 0;
+}
+
+.goal-body .btn-setgoal {
+  margin: 24px auto 0;
+}
+
+.goal-body .week {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 24px 0 32px;
+  gap: 21px;
+}
+
+.goal-body .week .day {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Montserrat";
+}
+
+.goal-body .week .day span:first-child {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #4d4d4d;
+}
+
+.goal-body .week .day span {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #4d4d4d;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.goal-body .week .day span.active {
+  color: #ff8f1c;
+}
+
+.goal-body .btn-viewcalendar {
+  width: 100%;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+  color: #3da0dd;
+  border-top: 1px solid #ecf1f4;
+  background: #fff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  text-transform: capitalize;
+  border-radius: 0 0 16px 16px !important;
+}
+
+.goal-body .btn-viewcalendar .week.user-weekdays {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-top: 29px;
+}
+
+.goal-body .btn-viewcalendar .week.user-weekdays .day {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-flow: column;
+      flex-flow: column;
+}
+
+.goal-body .btn-viewcalendar .week.user-weekdays .day > span {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  color: #2c2c2c;
+  margin-bottom: 8px;
+}
+
+.goal-body .btn-viewcalendar .week.user-weekdays .day > div {
+  position: relative;
+  margin: 8px 0 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 601px) {
+  .goal-body .btn-viewcalendar .week.user-weekdays .day > div svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.goal-body .btn-viewcalendar .week.user-weekdays .day > div canvas {
+  position: absolute;
+  inset: 0;
+}
+
+@media (max-width: 601px) {
+  .goal-body .btn-viewcalendar .week.user-weekdays .day > div canvas {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.goal-body #source-calendar {
+  margin-top: 30px;
+  padding: 0 0 32px;
+}
+
+.goal-body #source-calendar table {
+  margin: 0;
+  border: 0;
+}
+
+.goal-body #source-calendar table td,
+.goal-body #source-calendar table th {
+  border: 0;
+}
+
+.goal-body #source-calendar table th {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #4d4d4d;
+}
+
+.goal-body #source-calendar table th a {
+  color: #4d4d4d;
+}
+
+.goal-body #source-calendar table a.fc-daygrid-day-number {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 24px;
+  text-align: center;
+  color: #4d4d4d;
+  padding: 10px 4px;
+}
+
+.goal-body #source-calendar .fc-daygrid-day-events {
+  position: absolute;
+  margin: 0;
+  min-height: 1px;
+  top: calc(50% + 1px);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.goal-body #source-calendar .fc-daygrid-day-events a {
+  z-index: -1;
+  background: #00bedf;
+  border: 0;
+  height: 32px;
+  width: 32px;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+.goal-body #source-calendar .fc-daygrid-more-link {
+  cursor: pointer;
+  text-indent: -9999999px;
+  float: left;
+  width: 32px;
+  height: 32px;
+  background: #ec6b03;
+  border-radius: 50%;
+  margin: 0 auto;
+  left: 49%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  top: -1px;
+}
+
+.goal-body #source-calendar tr td.active-streak:last-child::after {
+  display: none;
+}
+
+.goal-body #source-calendar .fc-day-today {
+  background-color: inherit !important;
+}
+
+.goal-body #source-calendar .fc-day-today.active-streak .fc-daygrid-day-number {
+  background: 0;
+  top: 0;
+}
+
+.goal-body #source-calendar .fc-day-today .fc-daygrid-day-number {
+  width: 32px;
+  height: 32px;
+  background: #f15b2a;
+  color: #fff;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+}
+
+.goal-body #source-calendar .active-streak {
+  position: relative;
+}
+
+.goal-body #source-calendar .active-streak.last-streak::after {
+  display: none;
+}
+
+.goal-body #source-calendar .active-streak.fc-daypast-nostreak::before {
+  content: "" !important;
+  background: none !important;
+  display: none !important;
+}
+
+.goal-body #source-calendar .active-streak::after {
+  content: "";
+  width: 50%;
+  height: 32px;
+  background: #ccf2f9;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translateY(-48%);
+          transform: translateY(-48%);
+  z-index: -1;
+}
+
+.goal-body #source-calendar .active-streak ~ .active-streak::before {
+  content: "";
+  width: 50%;
+  height: 32px;
+  background: #ccf2f9;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translateY(-48%);
+          transform: translateY(-48%);
+  z-index: -1;
+}
+
+.goal-body #source-calendar .active-streak .fc-daygrid-day-top {
+  z-index: 5;
+}
+
+.goal-body #source-calendar .active-streak .fc-daygrid-day-top a {
+  color: #fff;
+}
+
+.goal-body #source-calendar .active-streak.very-last .fc-daygrid-day-events a::before {
+  width: 6px;
+  height: 6px;
+  display: block;
+  position: absolute;
+  background: #0071ca;
+  border-radius: 100%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  top: -9px;
+}
+
+.goal-body #source-calendar .fc-daygrid-day:not(.active-streak) + .active-streak::before {
+  display: none !important;
+}
+
+.goal-body #source-calendar .fc-day-past:not(.active-streak) + .active-streak::before {
+  display: none !important;
+}
+
+.goal-body #source-calendar .fc-daygrid-day-top {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.goal-body #source-calendar .fc-daygrid-day-frame {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.goal-body #source-calendar .fc-scroller {
+  height: auto !important;
+  overflow-y: auto;
+}
+
+.goal-body #source-calendar .fc-toolbar-chunk .fc-button {
+  padding: 0;
+  background: 0;
+  border: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.goal-body #source-calendar .fc-toolbar-chunk .fc-icon {
+  color: #324053;
+}
+
+.goal-body #source-calendar .fc-toolbar-title {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: #4d4d4d;
+}
+
+.goal-description {
+  padding: 16px 25px 0;
+}
+
+.goal-wrapper {
+  padding: 69px 25px 83px;
 }

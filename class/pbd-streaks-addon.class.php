@@ -26,6 +26,8 @@ class PBD_Streaks_Addon
         wp_register_style('pbd-sa-style', PBD_SA_URL . '/assets/css/pbd-sa-style.css', array(), '1.0');
         wp_register_style('pbd-sa-fullcalendar-css', PBD_SA_URL . '/assets/fullcalendar/main.css', array(), '1.0');
         wp_register_script('pbd-sa-fullcalendar-js', PBD_SA_URL . '/assets/fullcalendar/main.js', array(), '1.0');
+        wp_register_script('pbd-sa-circleprogress-js', PBD_SA_URL . '/assets/js/circle-progress.min.js', array(), '1.0');
+
     }
 
     public function pbd_streaks_shortcode_callback($atts = array())
@@ -73,12 +75,16 @@ class PBD_Streaks_Addon
         wp_enqueue_style('pbd-sa-style');
         wp_enqueue_style('pbd-sa-fullcalendar-css');
         wp_enqueue_script('pbd-sa-fullcalendar-js');
+        wp_enqueue_script('pbd-sa-circleprogress-js');
+
         wp_enqueue_script('pbd-sa-scripts', PBD_SA_URL . '/assets/js/scripts.js', array(), '1.0', true);
         wp_localize_script('pbd-sa-scripts', 'events', $events);
 
         ob_start();
 
 ?>
+<div class="goal-body">
+
 
         <div class="week-view">
             <div class="week user-weekdays">
@@ -105,15 +111,25 @@ class PBD_Streaks_Addon
                         if ((string)$found_key >= '0') :
                             $progress_percent = number_format(($reports[$found_key]['count'] / $count) * 100);
                         ?>
-                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="14" cy="14" r="14" fill="<?= $color ?>"></circle>
-                                <path d="M20.817 10l-8 8-3.637-3.636" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
+
+                            <div>
+                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="18" cy="18" r="18" fill="<?= $color ?>"/>
+                                <path d="M26 13L15 24L10 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+
+
                         <?php else : ?>
-                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="14" cy="14" r="13" stroke="#D9D9D9" stroke-width="2" />
-                                <circle cx="14" cy="14" r="7" fill="#E2E3E5" />
-                            </svg>
+                            <div class="day-status"
+                                    data-value="0.5">
+                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M18 33.429c8.521 0 15.429-6.908 15.429-15.429S26.52 2.571 18 2.571 2.571 9.48 2.571 18 9.48 33.429 18 33.429ZM18 36c9.941 0 18-8.059 18-18S27.941 0 18 0 0 8.059 0 18s8.059 18 18 18Z" fill="#D2D2D2"/>
+                                    <path d="M27 18a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" fill="#D2D2D2"/>
+                                </svg>
+                                
+                            </div>
+
                         <?php endif; ?>
                         <span><?= $day ?></span>
                     </div>
@@ -125,12 +141,14 @@ class PBD_Streaks_Addon
             <a href="#" class="view-full-calendar toggle-control">View Full Calendar</a>
         </div>
 
+
         <div class="page-template-pt-practice month-view" style="display: none;">
             <div id="source-calendar"></div>
             <a href="#" class="hide-full-calendar toggle-control">Hide Calendar</a>
         </div>
-
+        </div>
 <?php
+
 
         $output = ob_get_contents();
         ob_end_clean();
