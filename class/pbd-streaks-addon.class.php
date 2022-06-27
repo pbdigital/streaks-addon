@@ -67,7 +67,7 @@ class PBD_Streaks_Addon
                     foreach ($weekdays as $fullday) {
                         $wd = substr($fullday, 0, 2);
                         if ($wd == "Su") {
-                            $date = date("Y-m-d", strtotime($fullday . " last week"), );
+                            $date = date("Y-m-d", strtotime($fullday . " last week"));
                             $day = date("j", strtotime($fullday . " last week"));
                         } else {
                             $date = date("Y-m-d", strtotime($fullday . " this week"));
