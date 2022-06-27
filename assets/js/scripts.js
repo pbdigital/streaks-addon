@@ -58,8 +58,8 @@
         e.preventDefault();
 
         
-        $('.week-view').slideUp('slow')
-        $('.month-view').slideDown('slow')
+        $('.week-view').hide()
+        $('.month-view').show()
         
         callCalendar();
 
@@ -67,8 +67,8 @@
 
     $(document).on('click', '.hide-full-calendar', function(e) {
         e.preventDefault();
-        $('.month-view').slideUp('slow')
-        $('.week-view').slideDown('slow')
+        $('.month-view').hide()
+        $('.week-view').show()
 
         callCalendar();
     })

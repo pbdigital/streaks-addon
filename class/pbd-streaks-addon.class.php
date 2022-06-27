@@ -35,7 +35,11 @@ class PBD_Streaks_Addon
         extract(shortcode_atts(array(
             'id' => '',
             'count' => 1,
-            'color' => '#24D8A2'
+            'color' => '#24D8A2',
+            'button_color' => '',
+            'streak_connection_color' => '',
+            'class' => '',
+            'timezone' => ''
         ), $atts));
 
         $reports = $this->get_pbd_streaks_report($id);
@@ -49,8 +53,13 @@ class PBD_Streaks_Addon
 
         ob_start();
 
+        // set timezone if given
+        if ($timezone) {
+            date_default_timezone_set($timezone);
+        }
+        
         ?>
-        <div class="goal-body">
+        <div class="goal-body <?= $class ?>">
             <div class="week-view">
                 <div class="week user-weekdays">
                     <?php
@@ -58,7 +67,7 @@ class PBD_Streaks_Addon
                     foreach ($weekdays as $fullday) {
                         $wd = substr($fullday, 0, 2);
                         if ($wd == "Su") {
-                            $date = date("Y-m-d", strtotime($fullday . " last week"));
+                            $date = date("Y-m-d", strtotime($fullday . " last week"), );
                             $day = date("j", strtotime($fullday . " last week"));
                         } else {
                             $date = date("Y-m-d", strtotime($fullday . " this week"));
@@ -115,17 +124,27 @@ class PBD_Streaks_Addon
                     }
                     ?>
                 </div>
-                <a href="#" class="view-full-calendar toggle-control">View Full Calendar</a>
+                <a href="#" class="view-full-calendar toggle-control" <?= ($button_color) ? 'style="color: '.$button_color.'"' : '' ?> >View Full Calendar</a>
             </div>
 
 
             <div class="page-template-pt-practice month-view" style="display: none;">
                 <div id="source-calendar"></div>
-                <a href="#" class="hide-full-calendar toggle-control">Hide Calendar</a>
+                <a href="#" class="hide-full-calendar toggle-control" <?= ($button_color) ? 'style="color: '.$button_color.'"' : '' ?> >Hide Calendar</a>
                 <style>
-                    .goal-body #source-calendar .fc-daygrid-day-events a {
+                    .goal-body<?= '.'.$class ?> #source-calendar .fc-daygrid-day-events a {
                         background: <?= $color ?> !important;
                     }
+                    
+                    <?php if ($streak_connection_color) : ?>
+                    .goal-body<?= '.'.$class ?> #source-calendar .active-streak::after {
+                        background: <?= $streak_connection_color ?> !important;
+                    }
+
+                    .goal-body<?= '.'.$class ?> #source-calendar .active-streak ~ .active-streak::before {
+                        background: <?= $streak_connection_color ?> !important;
+                    }
+                    <?php endif; ?>
                 </style>
             </div>
         </div>
