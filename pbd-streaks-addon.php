@@ -2,7 +2,7 @@
 /**
  * Plugin Name: PBD Streaks Add-on
  * Plugin URI: https://pbdigital.com.au/
- * Description: 
+ * Description: Add a habit tracker style display to your site.
  * Author:     PB Digital
  * Author URI: https://pbdigital.com.au/
  * Version: 1.0.2
