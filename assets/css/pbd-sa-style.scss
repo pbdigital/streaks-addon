@@ -111,8 +111,8 @@ $font: "Montserrat";
             // display: none;
             align-items: center;
             justify-content: space-between;
-            padding: 24px 0 32px;
-            gap: 21px;
+            padding: 10px 0;
+            gap: 5px;
 
             .day {
                 display: flex;
@@ -149,7 +149,7 @@ $font: "Montserrat";
                 -webkit-box-pack: justify;
                 -ms-flex-pack: justify;
                 justify-content: space-between;
-                margin-top: 29px;
+                margin-top: 5px;
             }
 
             .week.user-weekdays .day {
