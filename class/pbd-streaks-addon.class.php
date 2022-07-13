@@ -49,7 +49,14 @@ class PBD_Streaks_Addon
         wp_enqueue_script('pbd-sa-fullcalendar-js');
         wp_enqueue_script('pbd-sa-circleprogress-js');
         wp_enqueue_script('pbd-sa-scripts', PBD_SA_URL . '/assets/js/scripts.js', array(), '1.0', true);
-        wp_localize_script('pbd-sa-scripts', 'pbd', ['events' => $reports, 'color' => $color]);
+
+
+        $calender_id = 'elc-' . bin2hex(random_bytes(4));
+        wp_localize_script('pbd-sa-scripts', 'pbd', [
+            'events' => $reports, 
+            'color' => $color,
+            'calender_id' => $calender_id
+        ]);
 
         ob_start();
 
@@ -124,12 +131,12 @@ class PBD_Streaks_Addon
                     }
                     ?>
                 </div>
-                <a href="#" class="view-full-calendar toggle-control" <?= ($button_color) ? 'style="color: '.$button_color.'"' : '' ?> >View Full Calendar</a>
+                <a href="#" class="view-full-calendar toggle-control" <?= ($button_color) ? 'style="color: '.$button_color.'"' : '' ?> data-id="<?= $calender_id ?>" data-events='<?= json_encode($reports) ?>'>View Full Calendar</a>
             </div>
 
 
             <div class="page-template-pt-practice month-view" style="display: none;">
-                <div id="source-calendar"></div>
+                <div id="<?= $calender_id  ?>" class="src-calendar"></div>
                 <a href="#" class="hide-full-calendar toggle-control" <?= ($button_color) ? 'style="color: '.$button_color.'"' : '' ?> >Hide Calendar</a>
                 <style>
                     .goal-body<?= '.'.$class ?> #source-calendar .fc-daygrid-day-events a {
