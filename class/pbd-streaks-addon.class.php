@@ -19,6 +19,8 @@ class PBD_Streaks_Addon
     {
         add_action('wp_enqueue_scripts', array($this, 'public_scripts'));
         add_shortcode('streaks', array($this, 'pbd_streaks_shortcode_callback'));
+        add_shortcode('longest_streaks', array($this, 'longest_streak_callback'));
+        add_shortcode('current_streaks', array($this, 'current_streak_callback'));
     }
 
     public function public_scripts()
@@ -164,7 +166,27 @@ class PBD_Streaks_Addon
         return $output;
     }
 
-    public function get_pbd_streaks_report($post_id)
+    public function longest_streak_callback($atts = array())
+    {
+        extract(shortcode_atts(array(
+            'id' => ''
+        ), $atts));
+
+        return max($this->streaks_count_record($id));
+    }
+
+    public function current_streak_callback($atts = array())
+    {
+        extract(shortcode_atts(array(
+            'id' => ''
+        ), $atts));
+
+        $streaks = $this->streaks_count_record($id);
+
+        return empty($streaks) ? 0 : $streaks[count($streaks) - 1];
+    }
+
+    private function get_pbd_streaks_report($post_id)
     {
         global $wpdb;
 
@@ -175,4 +197,30 @@ class PBD_Streaks_Addon
 
         return $reports;
     }
+
+    private function streaks_count_record($id) {
+        $reports = $this->get_pbd_streaks_report($id);
+
+        $counts = array();
+        $count = 0;
+        foreach($reports as $key => $report) {
+            $datetime = new DateTime($report['date']);
+            $datetime->modify('+1 day');
+            
+            if ($key == (count($reports) - 1)) {
+                $count = 1;
+            } else {
+                if ($datetime->format('Y-m-d') == $reports[$key + 1]['date']) {
+                    $count += 1;
+                } else {
+                    $count = 1;
+                }
+            }
+            array_push($counts, $count);
+        }
+
+        return $counts;
+    }
+
+    
 }
