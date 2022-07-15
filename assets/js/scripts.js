@@ -35,10 +35,10 @@
     // $('.active-streak').last().addClass('very-last');
 
     // function callCalendar() {
-    //     $('#source-calendar').css('visibility', 'hidden');
+    //     $('.src-calendar').css('visibility', 'hidden');
     //     setTimeout(() => {                    
     //         srcCalendar.destroy();
-    //         $('#source-calendar').css('visibility', 'visible');
+    //         $('.src-calendar').css('visibility', 'visible');
     //         srcCalendar.render();
     //         $('.selected-event').closest('td').addClass('active-streak');
     //         $('.active-streak + td:not(.active-streak)').prev().addClass('last-streak');
@@ -110,15 +110,7 @@
 
 
 
-    // circle progress bar for week view
-    let dayStatus = $('.day-status');
-
-    dayStatus.circleProgress({
-        size: 36,
-        startAngle: -1.55,
-        lineCap: 'round',
-        fill: {color: pbd.color}
-    });
+    
    
 
 

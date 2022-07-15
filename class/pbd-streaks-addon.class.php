@@ -96,7 +96,7 @@ class PBD_Streaks_Addon
     
                                 if ($progress_percent < 100):
                                 ?>
-                                    <div class="day-status"
+                                    <div class="<?= $calender_id ?> day-status"
                                         data-value="<?= $progress_percent / 100 ?>">
                                         <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M18 33.429c8.521 0 15.429-6.908 15.429-15.429S26.52 2.571 18 2.571 2.571 9.48 2.571 18 9.48 33.429 18 33.429ZM18 36c9.941 0 18-8.059 18-18S27.941 0 18 0 0 8.059 0 18s8.059 18 18 18Z" fill="#D2D2D2"/>
@@ -117,7 +117,7 @@ class PBD_Streaks_Addon
                                 endif;
                             ?>
                             <?php else : ?>
-                                <div class="day-status">
+                                <div class="<?= $calender_id ?> day-status">
                                     <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M18 33.429c8.521 0 15.429-6.908 15.429-15.429S26.52 2.571 18 2.571 2.571 9.48 2.571 18 9.48 33.429 18 33.429ZM18 36c9.941 0 18-8.059 18-18S27.941 0 18 0 0 8.059 0 18s8.059 18 18 18Z" fill="#D2D2D2"/>
                                         <path d="M27 18a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" fill="#D2D2D2"/>
@@ -141,20 +141,34 @@ class PBD_Streaks_Addon
                 <div id="<?= $calender_id  ?>" class="src-calendar"></div>
                 <a href="#" class="hide-full-calendar toggle-control" <?= ($button_color) ? 'style="color: '.$button_color.'"' : '' ?> >Hide Calendar</a>
                 <style>
-                    .goal-body<?= '.'.$class ?> #source-calendar .fc-daygrid-day-events a {
+                    .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .fc-daygrid-day-events a {
                         background: <?= $color ?> !important;
                     }
                     
                     <?php if ($streak_connection_color) : ?>
-                    .goal-body<?= '.'.$class ?> #source-calendar .active-streak::after {
+                    .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .active-streak::after {
                         background: <?= $streak_connection_color ?> !important;
                     }
 
-                    .goal-body<?= '.'.$class ?> #source-calendar .active-streak ~ .active-streak::before {
+                    .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .active-streak ~ .active-streak::before {
                         background: <?= $streak_connection_color ?> !important;
                     }
                     <?php endif; ?>
                 </style>
+                <script>
+                    jQuery(function($) {
+                        // circle progress bar for week view
+                        let dayStatus = $('.<?= $calender_id  ?>.day-status');
+
+                        dayStatus.circleProgress({
+                            size: 36,
+                            startAngle: -1.55,
+                            lineCap: 'round',
+                            fill: {color: '<?= $color ?>'}
+                        });
+                    })
+                    
+                </script>
             </div>
         </div>
         <?php

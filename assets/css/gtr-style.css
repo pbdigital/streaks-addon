@@ -1393,12 +1393,12 @@
     overflow: hidden !important;
   }
   
-  #source-calendar .fc-scroller.fc-day-grid-container {
+  .src-calendar .fc-scroller.fc-day-grid-container {
     padding: 0px 45px 0px 0px !important;
     max-width: 505px;
   }
   
-  #source-calendar table {
+  .src-calendar table {
     margin-bottom: 0px;
   }
   
@@ -1409,7 +1409,7 @@
     left: 1px;
   }
   
-  #source-calendar .fc-scroller.fc-day-grid-container {
+  .src-calendar .fc-scroller.fc-day-grid-container {
     max-width: 488px;
     min-height: 385px;
   }
@@ -2259,23 +2259,23 @@
     }
   }
   
-  .page-template-pt-practice #source-calendar {
+  .page-template-pt-practice .src-calendar {
     width: 100%;
     margin-bottom: 20px;
   }
   
-  .page-template-pt-practice #source-calendar table {
+  .page-template-pt-practice .src-calendar table {
     margin: 0;
     border: 0;
   }
   
-  .page-template-pt-practice #source-calendar table td,
-  .page-template-pt-practice #source-calendar table th {
+  .page-template-pt-practice .src-calendar table td,
+  .page-template-pt-practice .src-calendar table th {
     background: 0;
     border: 0;
   }
   
-  .page-template-pt-practice #source-calendar table th {
+  .page-template-pt-practice .src-calendar table th {
     
     font-style: normal;
     font-weight: 600;
@@ -2286,11 +2286,11 @@
     background: 0;
   }
   
-  .page-template-pt-practice #source-calendar table th a {
+  .page-template-pt-practice .src-calendar table th a {
     color: #324053;
   }
   
-  .page-template-pt-practice #source-calendar table a.fc-daygrid-day-number {
+  .page-template-pt-practice .src-calendar table a.fc-daygrid-day-number {
     
     font-style: normal;
     font-weight: 400;
@@ -2303,21 +2303,21 @@
     text-decoration: none;
   }
   
-  .page-template-pt-practice #source-calendar .fc-day-past .fc-daygrid-day-number,
-  .page-template-pt-practice #source-calendar .fc-day-today .fc-daygrid-day-number {
+  .page-template-pt-practice .src-calendar .fc-day-past .fc-daygrid-day-number,
+  .page-template-pt-practice .src-calendar .fc-day-today .fc-daygrid-day-number {
     cursor: pointer;
   }
   
-  .page-template-pt-practice #source-calendar .fc-day-future .fc-daygrid-day-number {
+  .page-template-pt-practice .src-calendar .fc-day-future .fc-daygrid-day-number {
     cursor: initial;
   }
   
-  .page-template-pt-practice #source-calendar .fc-daygrid-day-events {
+  .page-template-pt-practice .src-calendar .fc-daygrid-day-events {
     position: absolute;
     margin: 0;
   }
   
-  .page-template-pt-practice #source-calendar .fc-daygrid-day-events a {
+  .page-template-pt-practice .src-calendar .fc-daygrid-day-events a {
     z-index: -1;
     background: #24d8a2;
     border: 0;
@@ -2327,11 +2327,11 @@
     border-radius: 50%;
   }
   
-  .page-template-pt-practice #source-calendar .fc-daygrid-day-events a.no-entry {
+  .page-template-pt-practice .src-calendar .fc-daygrid-day-events a.no-entry {
     background: #e32438;
   }
   
-  .page-template-pt-practice #source-calendar .fc-daygrid-more-link {
+  .page-template-pt-practice .src-calendar .fc-daygrid-more-link {
     cursor: pointer;
     text-indent: -9999999px;
     float: left;
@@ -2346,15 +2346,15 @@
     top: -1px;
   }
   
-  .page-template-pt-practice #source-calendar tr td.active-streak:last-child::after {
+  .page-template-pt-practice .src-calendar tr td.active-streak:last-child::after {
     display: none;
   }
   
-  .page-template-pt-practice #source-calendar .fc-day-today {
+  .page-template-pt-practice .src-calendar .fc-day-today {
     background-color: inherit !important;
   }
   
-  .page-template-pt-practice #source-calendar .fc-day-today .fc-daygrid-event::before {
+  .page-template-pt-practice .src-calendar .fc-day-today .fc-daygrid-event::before {
     content: "";
     width: 6px;
     height: 6px;
@@ -2368,37 +2368,37 @@
     top: -9px;
   }
   
-  .page-template-pt-practice #source-calendar .fc-day-today .fc-daygrid-day-number {
+  .page-template-pt-practice .src-calendar .fc-day-today .fc-daygrid-day-number {
     color: #fff;
   }
   
-  .page-template-pt-practice #source-calendar .fc-day-past + .active-streak::before {
+  .page-template-pt-practice .src-calendar .fc-day-past + .active-streak::before {
     display: none;
   }
   
-  .page-template-pt-practice #source-calendar .active-streak {
+  .page-template-pt-practice .src-calendar .active-streak {
     position: relative;
   }
   
-  .page-template-pt-practice #source-calendar .active-streak.fc-day-past + .active-streak::before {
+  .page-template-pt-practice .src-calendar .active-streak.fc-day-past + .active-streak::before {
     display: block;
   }
   
-  .page-template-pt-practice #source-calendar .active-streak.last-streak::after {
+  .page-template-pt-practice .src-calendar .active-streak.last-streak::after {
     display: none;
   }
   
-  .page-template-pt-practice #source-calendar .active-streak.last-streak + .fc-day-past + .active-streak::before {
+  .page-template-pt-practice .src-calendar .active-streak.last-streak + .fc-day-past + .active-streak::before {
     display: none !important;
   }
   
-  .page-template-pt-practice #source-calendar .active-streak.fc-daypast-nostreak::before {
+  .page-template-pt-practice .src-calendar .active-streak.fc-daypast-nostreak::before {
     content: "" !important;
     background: none !important;
     display: none !important;
   }
   
-  .page-template-pt-practice #source-calendar .active-streak::after {
+  .page-template-pt-practice .src-calendar .active-streak::after {
     content: "";
     width: 50%;
     height: 4px;
@@ -2411,7 +2411,7 @@
             transform: translateY(-50%);
   }
   
-  .page-template-pt-practice #source-calendar .active-streak ~ .active-streak::before {
+  .page-template-pt-practice .src-calendar .active-streak ~ .active-streak::before {
     content: "";
     width: 50%;
     height: 4px;
@@ -2424,30 +2424,30 @@
             transform: translateY(-50%);
   }
   
-  .page-template-pt-practice #source-calendar .active-streak .fc-daygrid-day-top a {
+  .page-template-pt-practice .src-calendar .active-streak .fc-daygrid-day-top a {
     color: #fff;
   }
   
-  .page-template-pt-practice #source-calendar .active-streak.before-very-last + .active-streak.last-streak.very-last::before,
-  .page-template-pt-practice #source-calendar .active-streak.before-very-last + .fc-day-today.active-streak::before {
+  .page-template-pt-practice .src-calendar .active-streak.before-very-last + .active-streak.last-streak.very-last::before,
+  .page-template-pt-practice .src-calendar .active-streak.before-very-last + .fc-day-today.active-streak::before {
     display: block;
   }
   
-  .page-template-pt-practice #source-calendar .active-streak.very-last::before {
+  .page-template-pt-practice .src-calendar .active-streak.very-last::before {
     display: none;
   }
   
-  .page-template-pt-practice #source-calendar .active-streak.very-last .fc-daygrid-event a.selected-event.no-entry {
+  .page-template-pt-practice .src-calendar .active-streak.very-last .fc-daygrid-event a.selected-event.no-entry {
     background: #e32438;
   }
   
-  .page-template-pt-practice #source-calendar .fc-daygrid-day-top {
+  .page-template-pt-practice .src-calendar .fc-daygrid-day-top {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
   }
   
-  .page-template-pt-practice #source-calendar .fc-daygrid-day-frame {
+  .page-template-pt-practice .src-calendar .fc-daygrid-day-frame {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2459,12 +2459,12 @@
             justify-content: center;
   }
   
-  .page-template-pt-practice #source-calendar .fc-scroller {
+  .page-template-pt-practice .src-calendar .fc-scroller {
     height: auto !important;
     overflow-y: auto;
   }
   
-  .page-template-pt-practice #source-calendar .fc-toolbar-chunk .fc-button {
+  .page-template-pt-practice .src-calendar .fc-toolbar-chunk .fc-button {
     padding: 0;
     background: 0;
     border: 0;
@@ -2476,11 +2476,11 @@
             align-items: center;
   }
   
-  .page-template-pt-practice #source-calendar .fc-toolbar-chunk .fc-icon {
+  .page-template-pt-practice .src-calendar .fc-toolbar-chunk .fc-icon {
     color: #324053;
   }
   
-  .page-template-pt-practice #source-calendar .fc-toolbar-title {
+  .page-template-pt-practice .src-calendar .fc-toolbar-title {
     
     font-style: normal;
     font-weight: 600;
@@ -2491,7 +2491,7 @@
   }
   
   @media only screen and (max-width: 601px) {
-    .page-template-pt-practice #source-calendar .fc-toolbar-title {
+    .page-template-pt-practice .src-calendar .fc-toolbar-title {
       font-size: 20px;
       line-height: 1.5;
     }
@@ -2542,7 +2542,7 @@
     min-width: 400px;
   }
   
-  .page-template-pt-practice #source-calendar .fc-day-today .fc-daygrid-day-number {
+  .page-template-pt-practice .src-calendar .fc-day-today .fc-daygrid-day-number {
     color: #24d8a2;
   }
   

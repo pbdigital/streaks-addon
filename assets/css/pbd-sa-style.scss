@@ -89,7 +89,7 @@ $font: "Montserrat";
             text-decoration: none;
         }
         &.week-view {
-            #source-calendar {
+            .src-calendar {
                 display: none;
             }
             .week {
@@ -214,7 +214,7 @@ $font: "Montserrat";
             text-transform: capitalize;
             border-radius: 0 0 16px 16px !important;
         }
-        #source-calendar {
+        .src-calendar {
             margin-top: 30px;
             padding: 0 0 32px;
             table {

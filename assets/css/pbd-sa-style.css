@@ -88,7 +88,7 @@
   color: #ff8f1c;
   text-decoration: none;
 }
-.goal-body.week-view #source-calendar {
+.goal-body.week-view .src-calendar {
   display: none;
 }
 .goal-body.week-view .week {
@@ -209,18 +209,18 @@
     height: 30px;
   }
 }
-.goal-body #source-calendar {
+.goal-body .src-calendar {
   margin-top: 30px;
   padding: 0 0 32px;
 }
-.goal-body #source-calendar table {
+.goal-body .src-calendar table {
   margin: 0;
   border: 0;
 }
-.goal-body #source-calendar table td, .goal-body #source-calendar table th {
+.goal-body .src-calendar table td, .goal-body .src-calendar table th {
   border: 0;
 }
-.goal-body #source-calendar table th {
+.goal-body .src-calendar table th {
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -228,10 +228,10 @@
   text-align: center;
   color: #4d4d4d;
 }
-.goal-body #source-calendar table th a {
+.goal-body .src-calendar table th a {
   color: #4d4d4d;
 }
-.goal-body #source-calendar table a.fc-daygrid-day-number {
+.goal-body .src-calendar table a.fc-daygrid-day-number {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -241,14 +241,14 @@
   color: #4d4d4d;
   padding: 10px 4px;
 }
-.goal-body #source-calendar .fc-daygrid-day-events {
-  position: absolute;
+.goal-body .src-calendar .fc-daygrid-day-events {
+  position: absolute !important;
   margin: 0;
-  min-height: 1px;
+  min-height: 1px !important;
   top: calc(50% + 1px);
   transform: translateY(-50%);
 }
-.goal-body #source-calendar .fc-daygrid-day-events a {
+.goal-body .src-calendar .fc-daygrid-day-events a {
   z-index: -1;
   background: #00bedf;
   border: 0;
@@ -257,7 +257,7 @@
   margin: 0 auto;
   border-radius: 50%;
 }
-.goal-body #source-calendar .fc-daygrid-more-link {
+.goal-body .src-calendar .fc-daygrid-more-link {
   cursor: pointer;
   text-indent: -9999999px;
   float: left;
@@ -270,17 +270,17 @@
   transform: translateX(-50%);
   top: -1px;
 }
-.goal-body #source-calendar tr td.active-streak:last-child::after {
+.goal-body .src-calendar tr td.active-streak:last-child::after {
   display: none;
 }
-.goal-body #source-calendar .fc-day-today {
+.goal-body .src-calendar .fc-day-today {
   background-color: inherit !important;
 }
-.goal-body #source-calendar .fc-day-today.active-streak .fc-daygrid-day-number {
+.goal-body .src-calendar .fc-day-today.active-streak .fc-daygrid-day-number {
   background: 0;
   top: 0;
 }
-.goal-body #source-calendar .fc-day-today .fc-daygrid-day-number {
+.goal-body .src-calendar .fc-day-today .fc-daygrid-day-number {
   width: 32px;
   height: 32px;
   background: #f15b2a;
@@ -291,18 +291,18 @@
   justify-content: center;
   position: relative;
 }
-.goal-body #source-calendar .active-streak {
+.goal-body .src-calendar .active-streak {
   position: relative;
 }
-.goal-body #source-calendar .active-streak.last-streak::after {
+.goal-body .src-calendar .active-streak.last-streak::after {
   display: none;
 }
-.goal-body #source-calendar .active-streak.fc-daypast-nostreak::before {
+.goal-body .src-calendar .active-streak.fc-daypast-nostreak::before {
   content: "" !important;
   background: none !important;
   display: none !important;
 }
-.goal-body #source-calendar .active-streak::after {
+.goal-body .src-calendar .active-streak::after {
   content: "";
   width: 50%;
   height: 32px;
@@ -313,7 +313,7 @@
   transform: translateY(-48%);
   z-index: -1;
 }
-.goal-body #source-calendar .active-streak ~ .active-streak::before {
+.goal-body .src-calendar .active-streak ~ .active-streak::before {
   content: "";
   width: 50%;
   height: 32px;
@@ -324,13 +324,13 @@
   transform: translateY(-48%);
   z-index: -1;
 }
-.goal-body #source-calendar .active-streak .fc-daygrid-day-top {
+.goal-body .src-calendar .active-streak .fc-daygrid-day-top {
   z-index: 5;
 }
-.goal-body #source-calendar .active-streak .fc-daygrid-day-top a {
+.goal-body .src-calendar .active-streak .fc-daygrid-day-top a {
   color: #fff;
 }
-.goal-body #source-calendar .active-streak.very-last .fc-daygrid-day-events a::before {
+.goal-body .src-calendar .active-streak.very-last .fc-daygrid-day-events a::before {
   width: 6px;
   height: 6px;
   display: block;
@@ -341,25 +341,25 @@
   transform: translateX(-50%);
   top: -9px;
 }
-.goal-body #source-calendar .fc-daygrid-day:not(.active-streak) + .active-streak::before {
+.goal-body .src-calendar .fc-daygrid-day:not(.active-streak) + .active-streak::before {
   display: none !important;
 }
-.goal-body #source-calendar .fc-day-past:not(.active-streak) + .active-streak::before {
+.goal-body .src-calendar .fc-day-past:not(.active-streak) + .active-streak::before {
   display: none !important;
 }
-.goal-body #source-calendar .fc-daygrid-day-top {
+.goal-body .src-calendar .fc-daygrid-day-top {
   justify-content: center;
 }
-.goal-body #source-calendar .fc-daygrid-day-frame {
+.goal-body .src-calendar .fc-daygrid-day-frame {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.goal-body #source-calendar .fc-scroller {
+.goal-body .src-calendar .fc-scroller {
   height: auto !important;
   overflow-y: auto;
 }
-.goal-body #source-calendar .fc-toolbar-chunk .fc-button {
+.goal-body .src-calendar .fc-toolbar-chunk .fc-button {
   padding: 0;
   background: 0;
   border: 0;
@@ -367,10 +367,10 @@
   align-items: center;
   box-shadow: none;
 }
-.goal-body #source-calendar .fc-toolbar-chunk .fc-icon {
+.goal-body .src-calendar .fc-toolbar-chunk .fc-icon {
   color: #324053;
 }
-.goal-body #source-calendar .fc-toolbar-title {
+.goal-body .src-calendar .fc-toolbar-title {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;
