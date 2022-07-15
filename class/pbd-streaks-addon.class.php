@@ -41,7 +41,8 @@ class PBD_Streaks_Addon
             'button_color' => '',
             'streak_connection_color' => '',
             'class' => '',
-            'timezone' => ''
+            'timezone' => '',
+            'today_color' => ''
         ), $atts));
 
         $reports = $this->get_pbd_streaks_report($id);
@@ -146,14 +147,28 @@ class PBD_Streaks_Addon
                     }
                     
                     <?php if ($streak_connection_color) : ?>
-                    .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .active-streak::after {
-                        background: <?= $streak_connection_color ?> !important;
-                    }
+                        .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .active-streak::after {
+                            background: <?= $streak_connection_color ?> !important;
+                        }
 
-                    .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .active-streak ~ .active-streak::before {
-                        background: <?= $streak_connection_color ?> !important;
-                    }
+                        .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .active-streak ~ .active-streak::before {
+                            background: <?= $streak_connection_color ?> !important;
+                        }
                     <?php endif; ?>
+
+                    <?php if ($today_color) : ?>
+                        .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .active-streak::after {
+                            background: <?= $streak_connection_color ?> !important;
+                        }
+
+                        .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .active-streak ~ .active-streak::before {
+                            background: <?= $streak_connection_color ?> !important;
+                        }
+
+                        .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .fc-day-today .fc-daygrid-day-number {
+                            background: <?= $today_color ?> !important;
+                        }
+                        <?php endif; ?>
                 </style>
                 <script>
                     jQuery(function($) {
