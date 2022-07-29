@@ -46,6 +46,7 @@ if( ! class_exists( 'PBD_Streaks_Addon' ) ):
 
 	include_once( PBD_SA_PATH_CLASS.'/pbd-streaks-addon.class.php' );
 	add_action( 'plugins_loaded', array( 'PBD_Streaks_Addon', 'get_instance' ) );
+	include_once( PBD_SA_PATH_CLASS.'/pbd-streaks-reward.class.php' );
 
 	// Include our updater file
 	include_once( PBD_SA_PATH_CLASS.'/pbd-streaks-addon-updater.class.php' );
