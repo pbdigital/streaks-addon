@@ -164,11 +164,12 @@ class PBD_Streaks_Addon
                         .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .active-streak ~ .active-streak::before {
                             background: <?= $streak_connection_color ?> !important;
                         }
-
+                        <?php if ($progress_percent < 100) : ?>
                         .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .fc-day-today .fc-daygrid-day-number {
                             background: <?= $today_color ?> !important;
                         }
                         <?php endif; ?>
+                    <?php endif; ?>
                 </style>
                 <script>
                     jQuery(function($) {
