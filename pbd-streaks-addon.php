@@ -16,6 +16,9 @@ if ( ! defined( 'PBD_SA_PATH_CLASS' ) ) {
 if ( ! defined( 'PBD_SA_PATH' ) ) {
 	define( 'PBD_SA_PATH', dirname( __FILE__ ) );
 }
+if ( ! defined( 'PBD_SA_PATH_INCLUDES' ) ) {
+	define( 'PBD_SA_PATH_INCLUDES', dirname( __FILE__ ) . '/includes' );
+}
 if ( ! defined( 'PBD_SA_FOLDER' ) ) {
 	define( 'PBD_SA_FOLDER', basename( PBD_SA_PATH ) );
 }
@@ -46,6 +49,7 @@ if( ! class_exists( 'PBD_Streaks_Addon' ) ):
 
 	include_once( PBD_SA_PATH_CLASS.'/pbd-streaks-addon.class.php' );
 	add_action( 'plugins_loaded', array( 'PBD_Streaks_Addon', 'get_instance' ) );
+	include_once( PBD_SA_PATH_CLASS.'/pda-streaks-settings.class.php' );
 	include_once( PBD_SA_PATH_CLASS.'/pbd-streaks-reward.class.php' );
 
 	// Include our updater file

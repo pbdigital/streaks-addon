@@ -27,7 +27,7 @@ class PBD_Streaks_Reward
 		foreach ($order->get_items() as $item) {
 			// Call to gamipress_trigger_event() on each product purchased
 			gamipress_trigger_event(array(
-				'event' => 'my_prefix_custom_purchase_event', // Set our custom purchase event
+				'event' => 'pbd_day_streak_event', // Set our custom purchase event
 				'user_id' => $order->user_id, // User that will be awarded is the one who made the order
 				// Add any extra parameters you want
 				// In this example we passed the product ID and the order object itself
