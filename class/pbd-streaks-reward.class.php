@@ -6,38 +6,48 @@ class PBD_Streaks_Reward
 {
 	public function __construct()
 	{
-		add_filter('gamipress_activity_triggers', array( $this, 'my_prefix_custom_activity_triggers_for_purchase_a_product') );
-		add_action('woocommerce_payment_complete', array( $this, 'my_prefix_custom_listener_for_purchase_a_product') );
+		add_filter( 'gamipress_activity_triggers', array( $this, 'pbdigital_habit_custom_activity_triggers' ));
+		add_action('gamipress_award_achievement', array( $this, 'strks_gamipress_award_achievement'), 10, 5);
 	}
 
-	public function my_prefix_custom_activity_triggers_for_purchase_a_product($triggers)
-	{
-		$triggers['PBD Streaks Custom Events'] = array(
-			// Register the event my_prefix_custom_purchase_event
-			'pbd_day_streak_event' => __('Day Streak', 'gamipress'),
-		);
+	public function pbdigital_habit_custom_activity_triggers( $triggers ) {
 
+		$pbd_sa_settings  = get_option('pbd_sa_settings');
+		$days_streak = explode(",", $pbd_sa_settings['days_streak']);
+		$achievement_ids = explode(",", $pbd_sa_settings['achievement_ids']);
+
+		foreach ($achievement_ids as $achievement_id) {
+			$title = get_the_title( preg_replace('/\s+/', '',  $achievement_id));
+			foreach($days_streak as $streak){
+				$triggers['Habit Tracker']['streak_'. $streak . '_' . $achievement_id] = __( $title .' Streak of '.$streak.' days', 'gamipress' );
+			}
+		}
+	
 		return $triggers;
 	}
 
+	public function strks_gamipress_award_achievement( $user_id, $achievement_id, $trigger, $site_id, $args ){
 
-	public function my_prefix_custom_listener_for_purchase_a_product($order_id)
-	{
-		$order = wc_get_order($order_id);
-		foreach ($order->get_items() as $item) {
-			// Call to gamipress_trigger_event() on each product purchased
-			gamipress_trigger_event(array(
-				'event' => 'pbd_day_streak_event', // Set our custom purchase event
-				'user_id' => $order->user_id, // User that will be awarded is the one who made the order
-				// Add any extra parameters you want
-				// In this example we passed the product ID and the order object itself
-				'product_id' => $item->get_product_id(),
-				'order' => $order,
-			));
+		$pbd_sa_settings  = get_option('pbd_sa_settings');
+		$achievement_ids = explode(",", $pbd_sa_settings['achievement_ids']);
+
+		if ( in_array($achievement_id, $achievement_ids) ) {
+			$pbd_addon = new PBD_Streaks_Addon;
+			$current_streak = $pbd_addon->streaks_count_record($achievement_id);
+
+			$days_streak = explode(",", $pbd_sa_settings['days_streak']);
+			if ( in_array($current_streak, $days_streak) ){
+				//if so, trigger our custom trigger using gamipress_trigger_event()
+				gamipress_trigger_event( array(
+					'event' => 'streak_'. $current_streak . '_' . $achievement_id,
+					'user_id' => $user_id
+				) );
+			}
 		}
+	
+	
 	}
-	// The safe way to check if an user has perform a purchase is when an order payment is set to completed
-	// So let's hook the 'woocommerce_payment_complete' action
+	
 
 
 }

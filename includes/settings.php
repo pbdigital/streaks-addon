@@ -14,26 +14,22 @@
         <table class="form-table">
             <tbody>
                 <tr>
-                    <th scope="row">Action hook</th>
+                    <th scope="row">Days Streak Triggers</th>
                     <td>
-                        <input type="text" name="pbd_sa_settings[action_hook]" size="40" value="<?= $pbd_sa_settings['action_hook'] ?>"/>
+                        <input type="text" name="pbd_sa_settings[days_streak]" size="40" value="<?= $pbd_sa_settings['days_streak'] ?>"/>
+                        <br />
+                        <small>Comma separated values of different days streak. i.e : 5,7,14,21 </small>
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row">Streaks Count</th>
+                    <th scope="row">Achievement IDs</th>
                     <td>
-                        <input type="text" name="pbd_sa_settings[streak_count]" size="40" value="<?= $pbd_sa_settings['streak_count'] ?>"/>
-                        <br/>
-                        <small>Number of times before event will trigger.</smal>
+                        <input type="text" name="pbd_sa_settings[achievement_ids]" size="40" value="<?= $pbd_sa_settings['achievement_ids'] ?>"/>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <?php
-            // if (isset($_GET['tab']) && $_GET['tab'] == 'projects') {
-            //     // include_once(N2PDF_PATH_INCLUDES . '/ninja2pdf-licenses.php');
-            // } else 
-        ?>
+
         <?php submit_button(); ?>
     </form>
 
