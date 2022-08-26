@@ -202,7 +202,7 @@ class PBD_Streaks_Addon
             'id' => ''
         ), $atts));
 
-        return max($this->streaks_count_record($id));
+        return (int)max($this->streaks_count_record($id));
     }
 
     public function current_streak_callback($atts = array())
