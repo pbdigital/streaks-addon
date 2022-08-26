@@ -212,8 +212,9 @@ class PBD_Streaks_Addon
         ), $atts));
 
         $streaks = $this->streaks_count_record($id);
+        $streak = end($streaks);
 
-        return $streaks;
+        return $streak;
     }
 
     public function get_pbd_streaks_report($post_id)
@@ -230,26 +231,26 @@ class PBD_Streaks_Addon
 
     public function streaks_count_record($id) {
         $reports = $this->get_pbd_streaks_report($id);
-        // wp_die(print_r( $reports));
 
+        $counts = array();
         $count = 0;
         foreach($reports as $key => $report) {
-
-            if ($key == 0) {
+            $datetime = new DateTime($report['date']);
+            $datetime->modify('+1 day');
+            
+            if ($key == (count($reports) - 1)) {
                 $count = 1;
             } else {
-                $datetime = new DateTime($report['date']);
-                $datetime->modify('-1 day');
-
-                if ($datetime->format('Y-m-d') == $reports[$key - 1]['date']) {
+                if ($datetime->format('Y-m-d') == $reports[$key + 1]['date']) {
                     $count += 1;
                 } else {
                     $count = 1;
                 }
             }
+            array_push($counts, $count);
         }
 
-        return $count;
+        return $counts;
 
     }
 
