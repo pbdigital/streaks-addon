@@ -5,7 +5,7 @@
  * Description: Add a habit tracker style display to your site.
  * Author:     PB Digital
  * Author URI: https://pbdigital.com.au/
- * Version: 1.0.3
+ * Version: 1.0.4
  * Text Domain:   pbd-sa
  */
 
