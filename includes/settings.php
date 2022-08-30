@@ -7,6 +7,9 @@
     <?php
         $pbd_sa_settings  = get_option('pbd_sa_settings');  
 
+        
+        $achievement_types = array_column(gamipress_get_achievement_types(), 'singular_name');
+        $achievement_ids = $pbd_sa_settings['achievement_ids'];
     ?>
     <form method="post" action="options.php">
         <?php settings_fields( 'pbd_sa_settings' ); ?>
@@ -24,7 +27,17 @@
                 <tr>
                     <th scope="row">Achievement IDs</th>
                     <td>
-                        <input type="text" name="pbd_sa_settings[achievement_ids]" size="40" value="<?= $pbd_sa_settings['achievement_ids'] ?>"/>
+                        <select name="pbd_sa_settings[achievement_ids][]" style="min-width: 307px;" multiple>
+                            <?php
+                            foreach(gamipress_get_achievements() as $achievement) {
+                                if ($achievement->post_type == 'step')
+                                    continue;
+                                ?>
+                                    <option value="<?= $achievement->ID ?>" <?= in_array($achievement->ID, $achievement_ids) ? 'selected="selected"' : '' ?> ><?= $achievement->post_title ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
                     </td>
                 </tr>
             </tbody>

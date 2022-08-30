@@ -14,7 +14,7 @@ class PBD_Streaks_Reward
 
 		$pbd_sa_settings  = get_option('pbd_sa_settings');
 		$days_streak = explode(",", $pbd_sa_settings['days_streak']);
-		$achievement_ids = explode(",", $pbd_sa_settings['achievement_ids']);
+		$achievement_ids = $pbd_sa_settings['achievement_ids'];
 
 		foreach ($achievement_ids as $achievement_id) {
 			$title = get_the_title( preg_replace('/\s+/', '',  $achievement_id));
@@ -29,7 +29,7 @@ class PBD_Streaks_Reward
 	public function strks_gamipress_award_achievement( $user_id, $achievement_id, $trigger, $site_id, $args ){
 
 		$pbd_sa_settings  = get_option('pbd_sa_settings');
-		$achievement_ids = explode(",", $pbd_sa_settings['achievement_ids']);
+		$achievement_ids = $pbd_sa_settings['achievement_ids'];
 
 		if ( in_array($achievement_id, $achievement_ids) ) {
 			$pbd_addon = new PBD_Streaks_Addon;
