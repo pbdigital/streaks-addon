@@ -239,7 +239,7 @@ class PBD_Streaks_Addon
             $datetime->modify('+1 day');
             
             if ($key == (count($reports) - 1)) {
-                $count = 1;
+                break;
             } else {
                 if ($datetime->format('Y-m-d') == $reports[$key + 1]['date']) {
                     $count += 1;
