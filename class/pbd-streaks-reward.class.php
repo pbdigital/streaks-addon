@@ -34,8 +34,9 @@ class PBD_Streaks_Reward
 		if ( in_array($achievement_id, $achievement_ids) ) {
 			$pbd_addon = new PBD_Streaks_Addon;
 			$current_streak = $pbd_addon->streaks_count_record($achievement_id);
-
+			$current_streak = end($current_streak);
 			$days_streak = explode(",", $pbd_sa_settings['days_streak']);
+
 			if ( in_array($current_streak, $days_streak) ){
 				//if so, trigger our custom trigger using gamipress_trigger_event()
 				gamipress_trigger_event( array(
@@ -47,8 +48,6 @@ class PBD_Streaks_Reward
 	
 	
 	}
-	
-
 
 }
 
