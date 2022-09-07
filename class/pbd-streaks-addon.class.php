@@ -211,10 +211,35 @@ class PBD_Streaks_Addon
             'id' => ''
         ), $atts));
 
-        $streaks = $this->streaks_count_record($id);
-        $streak = end($streaks);
+        $reports = $this->get_pbd_streaks_report($id);
 
-        return $streak;
+        $new_format = array();
+        foreach($reports as $report) {
+            $new_format[] = $report['date'];
+        }
+
+        $datetime = new DateTime();
+        $today = $datetime->format('Y-m-d');
+        $key = array_search($today, $new_format);
+
+        $count = 1;
+        if ($key == null)
+            return 0;
+        else {
+            for ($x = $key; $x > 0; $x--) {
+                $datetime = new DateTime($new_format[$x]);
+                $datetime->modify('-1 day');
+
+                if ($datetime->format('Y-m-d') == $new_format[$x - 1]) {
+                    $count += 1;
+                } else {
+                    break;
+                }
+            }
+        }
+
+        return $count;
+
     }
 
     public function get_pbd_streaks_report($post_id)
