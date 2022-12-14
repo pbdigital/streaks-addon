@@ -8,7 +8,7 @@ class PBD_Streaks_Generator {
     }
 
     public function admin_menus(){
-        add_menu_page( 'PBD Streaks Add-on', 'Streasks Generator', 'manage_options', 'pbd-streaks-add-on', array( $this , 'pbd_streaks_generator_page' ));
+        add_menu_page( 'PBD Streaks Add-on', 'Streaks Generator', 'manage_options', 'pbd-streaks-add-on', array( $this , 'pbd_streaks_generator_page' ));
     }
 
     public function generate_shortcode_callback()
