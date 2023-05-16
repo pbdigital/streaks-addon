@@ -21,6 +21,10 @@ class PBD_Streaks_Addon
         add_shortcode('streaks', array($this, 'pbd_streaks_shortcode_callback'));
         add_shortcode('longest_streaks', array($this, 'longest_streak_callback'));
         add_shortcode('current_streaks', array($this, 'current_streak_callback'));
+        add_action('enqueue_block_editor_assets', array($this, 'sdfsdfdsf'));
+        add_action('init', array($this, 'register_streaks_block'));
+        // admin enqueue script
+        add_action('admin_enqueue_scripts', array($this, 'admin_scripts'));
     }
 
     public function public_scripts()
@@ -32,6 +36,58 @@ class PBD_Streaks_Addon
 
     }
 
+    public function admin_scripts()
+    {
+        wp_register_style('pbd-sa-admin-style', PBD_SA_URL . '/assets/css/pbd-sa-admin-style.css', array(), '1.0');
+        wp_enqueue_style('pbd-sa-admin-style');
+    }
+
+
+    public function sdfsdfdsf()
+    {
+        wp_enqueue_script(
+            'pbd-sa-block-editor',
+            PBD_SA_URL . '/blocks/streaks-block/index.js',
+            array('wp-blocks', 'wp-components', 'wp-editor', 'wp-element', 'wp-i18n'),
+            '1.0'
+        );
+    }
+
+    public function register_streaks_block() {
+        if (function_exists('register_block_type')) {
+            register_block_type('pbd-streaks/streaks-block', array(
+                'attributes' => array(
+                    'id' => array(
+                        'type' => 'number',
+                    ),
+                    'count' => array(
+                        'type' => 'number',
+                    ),
+                    'color' => array(
+                        'type' => 'string',
+                    ),
+                    'button_color' => array(
+                        'type' => 'string',
+                    ),
+                    'streak_connection_color' => array(
+                        'type' => 'string',
+                    ),
+                    'class_name' => array(
+                        'type' => 'string',
+                    ),
+                    'timezone' => array(
+                        'type' => 'string',
+                    ),
+                    'today_color' => array(
+                        'type' => 'string',
+                    ),
+
+                ),
+                'render_callback' => array($this, 'pbd_streaks_shortcode_callback'),
+            ));
+        }
+    }
+
     public function pbd_streaks_shortcode_callback($atts = array())
     {
         extract(shortcode_atts(array(
@@ -40,7 +96,7 @@ class PBD_Streaks_Addon
             'color' => '#24D8A2',
             'button_color' => '',
             'streak_connection_color' => '',
-            'class' => '',
+            'class_name' => '',
             'timezone' => '',
             'today_color' => ''
         ), $atts));
@@ -69,7 +125,7 @@ class PBD_Streaks_Addon
         }
         
         ?>
-        <div class="goal-body <?= $class ?>">
+        <div class="goal-body <?= $class_name ?>">
             <div class="week-view">
                 <div class="week user-weekdays">
                     <?php
@@ -142,30 +198,30 @@ class PBD_Streaks_Addon
                 <div id="<?= $calender_id  ?>" class="src-calendar"></div>
                 <a href="#" class="hide-full-calendar toggle-control" <?= ($button_color) ? 'style="color: '.$button_color.'"' : '' ?> >Hide Calendar</a>
                 <style>
-                    .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .fc-daygrid-day-events a {
+                    .goal-body<?= '.'.$class_name ?> #<?= $calender_id  ?> .fc-daygrid-day-events a {
                         background: <?= $color ?> !important;
                     }
                     
                     <?php if ($streak_connection_color) : ?>
-                        .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .active-streak::after {
+                        .goal-body<?= '.'.$class_name ?> #<?= $calender_id  ?> .active-streak::after {
                             background: <?= $streak_connection_color ?> !important;
                         }
 
-                        .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .active-streak ~ .active-streak::before {
+                        .goal-body<?= '.'.$class_name ?> #<?= $calender_id  ?> .active-streak ~ .active-streak::before {
                             background: <?= $streak_connection_color ?> !important;
                         }
                     <?php endif; ?>
 
                     <?php if ($today_color) : ?>
-                        .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .active-streak::after {
+                        .goal-body<?= '.'.$class_name ?> #<?= $calender_id  ?> .active-streak::after {
                             background: <?= $streak_connection_color ?> !important;
                         }
 
-                        .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .active-streak ~ .active-streak::before {
+                        .goal-body<?= '.'.$class_name ?> #<?= $calender_id  ?> .active-streak ~ .active-streak::before {
                             background: <?= $streak_connection_color ?> !important;
                         }
                         <?php if ($progress_percent < 100) : ?>
-                        .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .fc-day-today .fc-daygrid-day-number {
+                        .goal-body<?= '.'.$class_name ?> #<?= $calender_id  ?> .fc-day-today .fc-daygrid-day-number {
                             background: <?= $today_color ?> !important;
                         }
                         <?php endif; ?>
