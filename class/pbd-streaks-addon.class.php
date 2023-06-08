@@ -18,6 +18,7 @@ class PBD_Streaks_Addon
     public function __construct()
     {
         add_action('wp_enqueue_scripts', array($this, 'public_scripts'));
+        add_action('wp_head', array($this, 'set_cookie_user_timezone'));
         add_shortcode('streaks', array($this, 'pbd_streaks_shortcode_callback'));
         add_shortcode('longest_streaks', array($this, 'longest_streak_callback'));
         add_shortcode('current_streaks', array($this, 'current_streak_callback'));
@@ -32,6 +33,19 @@ class PBD_Streaks_Addon
 
     }
 
+    public function set_cookie_user_timezone()
+    {
+        if ( ! isset( $_COOKIE['tribe_browser_time_zone'] ) ) { 
+            ?>
+            <script type="text/javascript">
+                if ( navigator.cookieEnabled ) {
+                    document.cookie = "pbd_streaks_time_zone=" + Intl.DateTimeFormat().resolvedOptions().timeZone + "; path=/";
+                }
+            </script>
+            <?php 
+        }
+    }
+
     public function pbd_streaks_shortcode_callback($atts = array())
     {
         extract(shortcode_atts(array(
@@ -41,11 +55,16 @@ class PBD_Streaks_Addon
             'button_color' => '',
             'streak_connection_color' => '',
             'class' => '',
-            'timezone' => '',
+            // 'timezone' => '',
             'today_color' => ''
         ), $atts));
 
         $reports = $this->get_pbd_streaks_report($id);
+
+        // convert date to user timezone convert_date_to_local_timezone
+        foreach ($reports as $key => $report) {
+            $reports[$key]['date'] = $this->convert_date_to_local_timezone($report['date']);
+        }
 
         wp_enqueue_style('pbd-sa-style');
         wp_enqueue_style('pbd-sa-fullcalendar-css');
@@ -62,11 +81,6 @@ class PBD_Streaks_Addon
         ]);
 
         ob_start();
-
-        // set timezone if given
-        if ($timezone) {
-            date_default_timezone_set($timezone);
-        }
         
         ?>
         <div class="goal-body <?= $class ?>">
@@ -223,7 +237,7 @@ class PBD_Streaks_Addon
         $user_id = get_current_user_id();
         $table = $wpdb->prefix . 'gamipress_user_earnings';
 
-        $reports = $wpdb->get_results("SELECT DATE_FORMAT(date, '%Y-%m-%d') as date, COUNT(DISTINCT user_earning_id) as count FROM $table WHERE user_id = $user_id AND post_id = $post_id GROUP BY DATE_FORMAT(date, '%Y-%m-%d')", ARRAY_A);
+        $reports = $wpdb->get_results("SELECT date, COUNT(DISTINCT user_earning_id) as count FROM $table WHERE user_id = $user_id AND post_id = $post_id GROUP BY DATE_FORMAT(date, '%Y-%m-%d')", ARRAY_A);
 
         return $reports;
     }
@@ -250,6 +264,15 @@ class PBD_Streaks_Addon
         }
 
         return $counts;
+    }
+
+    public function convert_date_to_local_timezone($date) {
+        // timezone sample Asia/Manila
+        $browser_time_zone_string = $_COOKIE['pbd_streaks_time_zone'];
+        $browser_time_zone = new DateTimeZone($browser_time_zone_string);
+        $date = new DateTime($date);
+        $date->setTimezone($browser_time_zone);
+        return $date->format('Y-m-d');
     }
 
     
