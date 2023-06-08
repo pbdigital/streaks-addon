@@ -216,7 +216,7 @@ class PBD_Streaks_Addon
             'id' => ''
         ), $atts));
 
-        return max($this->streaks_count_record($id));
+        return (int)max($this->streaks_count_record($id));
     }
 
     public function current_streak_callback($atts = array())
@@ -225,12 +225,38 @@ class PBD_Streaks_Addon
             'id' => ''
         ), $atts));
 
-        $streaks = $this->streaks_count_record($id);
+        $reports = $this->get_pbd_streaks_report($id);
 
-        return empty($streaks) ? 0 : $streaks[count($streaks) - 1];
+        $new_format = array();
+        foreach($reports as $report) {
+            $new_format[] = $report['date'];
+        }
+
+        $datetime = new DateTime();
+        $today = $datetime->format('Y-m-d');
+        $key = array_search($today, $new_format);
+
+        $count = 1;
+        if ($key == null)
+            return 0;
+        else {
+            for ($x = $key; $x > 0; $x--) {
+                $datetime = new DateTime($new_format[$x]);
+                $datetime->modify('-1 day');
+
+                if ($datetime->format('Y-m-d') == $new_format[$x - 1]) {
+                    $count += 1;
+                } else {
+                    break;
+                }
+            }
+        }
+
+        return $count;
+
     }
 
-    private function get_pbd_streaks_report($post_id)
+    public function get_pbd_streaks_report($post_id)
     {
         global $wpdb;
 
@@ -242,7 +268,7 @@ class PBD_Streaks_Addon
         return $reports;
     }
 
-    private function streaks_count_record($id) {
+    public function streaks_count_record($id) {
         $reports = $this->get_pbd_streaks_report($id);
 
         $counts = array();
@@ -252,7 +278,7 @@ class PBD_Streaks_Addon
             $datetime->modify('+1 day');
             
             if ($key == (count($reports) - 1)) {
-                $count = 1;
+                break;
             } else {
                 if ($datetime->format('Y-m-d') == $reports[$key + 1]['date']) {
                     $count += 1;
@@ -264,6 +290,7 @@ class PBD_Streaks_Addon
         }
 
         return $counts;
+
     }
 
     public function convert_date_to_local_timezone($date) {
