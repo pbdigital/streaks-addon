@@ -18,6 +18,9 @@ class PBD_Streaks_Addon
     public function __construct()
     {
         add_action('wp_enqueue_scripts', array($this, 'public_scripts'));
+        add_action('admin_enqueue_scripts', array($this, 'admin_scripts'));
+        add_action('admin_enqueue_scripts', array($this, 'public_scripts'));
+        add_action( 'wp_default_scripts', array($this, 'wp_default_custom_scripts') );
         add_action('wp_head', array($this, 'set_cookie_user_timezone'));
         add_shortcode('streaks', array($this, 'pbd_streaks_shortcode_callback'));
         add_shortcode('longest_streaks', array($this, 'longest_streak_callback'));
@@ -33,6 +36,18 @@ class PBD_Streaks_Addon
 
     }
 
+
+    public function admin_scripts()
+    {
+        wp_register_script('pbd-sa-generator-js', PBD_SA_URL . '/assets/js/generator.js', array(), '1.0');
+    }
+
+    public function wp_default_custom_scripts( $scripts ){
+        $suffix = SCRIPT_DEBUG ? '' : '.min';
+        $scripts->add( 'iris', '/wp-admin/js/iris.min.js', array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), '1.0.7', 1 );
+        $scripts->add( 'wp-color-picker', "/wp-admin/js/color-picker$suffix.js", array( 'iris' ), false, 1 );
+        $scripts->set_translations( 'wp-color-picker' );
+
     public function set_cookie_user_timezone()
     {
         if ( ! isset( $_COOKIE['tribe_browser_time_zone'] ) ) { 
@@ -44,6 +59,7 @@ class PBD_Streaks_Addon
             </script>
             <?php 
         }
+
     }
 
     public function pbd_streaks_shortcode_callback($atts = array())
@@ -156,33 +172,35 @@ class PBD_Streaks_Addon
                 <div id="<?= $calender_id  ?>" class="src-calendar"></div>
                 <a href="#" class="hide-full-calendar toggle-control" <?= ($button_color) ? 'style="color: '.$button_color.'"' : '' ?> >Hide Calendar</a>
                 <style>
-                    .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .fc-daygrid-day-events a {
+                    .goal-body<?=  ($class) ? '.'.$class : '' ?> #<?= $calender_id  ?> .fc-daygrid-day-events a {
                         background: <?= $color ?> !important;
                     }
                     
                     <?php if ($streak_connection_color) : ?>
-                        .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .active-streak::after {
+                        .goal-body<?=  ($class) ? '.'.$class : '' ?> #<?= $calender_id  ?> .active-streak::after {
                             background: <?= $streak_connection_color ?> !important;
                         }
 
-                        .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .active-streak ~ .active-streak::before {
+                        .goal-body<?=  ($class) ? '.'.$class : '' ?> #<?= $calender_id  ?> .active-streak ~ .active-streak::before {
                             background: <?= $streak_connection_color ?> !important;
                         }
                     <?php endif; ?>
 
                     <?php if ($today_color) : ?>
-                        .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .active-streak::after {
+                        .goal-body<?=  ($class) ? '.'.$class : '' ?> #<?= $calender_id  ?> .active-streak::after {
                             background: <?= $streak_connection_color ?> !important;
                         }
-
-                        .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .active-streak ~ .active-streak::before {
+                        
+                        .goal-body<?=  ($class) ? '.'.$class : '' ?> #<?= $calender_id  ?> .active-streak ~ .active-streak::before {
                             background: <?= $streak_connection_color ?> !important;
                         }
-                        <?php if ($progress_percent < 100) : ?>
-                        .goal-body<?= '.'.$class ?> #<?= $calender_id  ?> .fc-day-today .fc-daygrid-day-number {
+  
+                        <?php //if ((int)$progress_percent < 100) : ?>
+                        .goal-body<?=  ($class) ? '.'.$class : '' ?> #<?= $calender_id  ?> .fc-day-today .fc-daygrid-day-number {
                             background: <?= $today_color ?> !important;
+                            /* hint here */
                         }
-                        <?php endif; ?>
+                        <?php //endif; ?>
                     <?php endif; ?>
                 </style>
                 <script>
