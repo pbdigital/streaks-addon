@@ -47,7 +47,7 @@ class PBD_Streaks_Addon
         $scripts->add( 'iris', '/wp-admin/js/iris.min.js', array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), '1.0.7', 1 );
         $scripts->add( 'wp-color-picker', "/wp-admin/js/color-picker$suffix.js", array( 'iris' ), false, 1 );
         $scripts->set_translations( 'wp-color-picker' );
-
+    }
     public function set_cookie_user_timezone()
     {
         if ( ! isset( $_COOKIE['tribe_browser_time_zone'] ) ) { 
@@ -124,7 +124,8 @@ class PBD_Streaks_Addon
                             <?php
                             if ((string)$found_key >= '0') :
                                 $progress_percent = number_format(($reports[$found_key]['count'] / $count) * 100);
-    
+                                $progress_percent = 100;
+                                //TODO: Add ability to have progression
                                 if ($progress_percent < 100):
                                 ?>
                                     <div class="<?= $calender_id ?> day-status"
@@ -196,7 +197,7 @@ class PBD_Streaks_Addon
                         }
   
                         <?php //if ((int)$progress_percent < 100) : ?>
-                        .goal-body<?=  ($class) ? '.'.$class : '' ?> #<?= $calender_id  ?> .fc-day-today .fc-daygrid-day-number {
+                        .goal-body<?=  ($class) ? '.'.$class : '' ?> #<?= $calender_id  ?> .fc-day-today:not(.active-streak)  .fc-daygrid-day-number {
                             background: <?= $today_color ?> !important;
                             /* hint here */
                         }
