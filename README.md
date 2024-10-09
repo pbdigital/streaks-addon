@@ -27,46 +27,42 @@ The PBD Streaks Add-on is a WordPress plugin designed to enhance your site with 
 
 Once activated, the PBD Streaks Add-on will automatically integrate with your GamiPress setup. You can configure the settings and start tracking habits directly from the GamiPress interface.
 
-### Shortcode
+### Shortcodes
 
-To display the habit tracker on your site, use the following shortcode in your posts or pages:
-[pbd_streaks_tracker]
+To display the habit tracker on your site, use the following shortcodes in your posts or pages:
+
+1. Streaks Tracker:
+```
+[streaks id=61 color="#24D8A2" button_color="green" streak_connection_color="red" today_color="yellow" class="class_name_goes_here"]
+```
+
+2. Longest Streaks:
+```
+[longest_streaks id=61]
+```
+
+3. Current Streaks:
+```
+[current_streaks id=61]
+```
+
 #### Customization Options
 
-You can customize the shortcode with the following parameters:
+You can customize the `[streaks]` shortcode with the following parameters:
 
-- **user_id**: (optional) Specify the user ID to display the habit tracker for a specific user. Default is the current logged-in user.
-  
-  Example: 
-  ```markdown
-  [pbd_streaks_tracker user_id="123"]
-  ```
+- **id**: (required) Specify the GamiPress achievement type ID.
+- **color**: (optional) Set the main color for the streak tracker. Default is "#24D8A2".
+- **button_color**: (optional) Set the color for buttons. Default is "green".
+- **streak_connection_color**: (optional) Set the color for streak connections. Default is "red".
+- **today_color**: (optional) Set the color for today's date. Default is "yellow".
+- **class**: (optional) Add custom CSS classes to the streak tracker container.
 
-- **show_progress**: (optional) Set to `true` or `false` to show or hide the progress bar for habits. Default is `true`.
-  
-  Example: 
-  ```markdown
-  [pbd_streaks_tracker show_progress="false"]
-  ```
+Example:
+```
+[streaks id=61 color="#FF5733" button_color="blue" streak_connection_color="#00FF00" today_color="#FFC300" class="my-custom-class"]
+```
 
-- **layout**: (optional) Choose the layout style for the tracker. Options are `vertical` or `horizontal`. Default is `vertical`.
-  
-  Example: 
-  ```markdown
-  [pbd_streaks_tracker layout="horizontal"]
-  ```
-
-- **title**: (optional) Customize the title of the habit tracker display.
-  
-  Example: 
-  ```markdown
-  [pbd_streaks_tracker title="My Custom Habit Tracker"]
-  ```
-
-This shortcode will display the habit tracker for user ID 123, show the progress bar, use a horizontal layout, and set a custom title.
-
-
-
+The `[longest_streaks]` and `[current_streaks]` shortcodes only require the `id` parameter, which should match the GamiPress achievement type ID used in the main `[streaks]` shortcode.
 
 ## License
 
